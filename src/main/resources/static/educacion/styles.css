@@ -12,10 +12,47 @@ body {
     width: 90%;
     height: 70%;
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: space-between; /* Distribuye el espacio entre las librerías y la pizarra */
+    align-items: center;
     background-color: #73b899;
     padding: 0 10px;
+    gap: 20px; /* Añade un margen entre las librerías y la pizarra */
+}
+
+.board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Reduce el espacio entre el reloj y la pizarra */
+    width: 50%;
+}
+
+.clock {
+    position: relative;
+    width: calc(200px * var(--scale));
+    height: calc(200px * var(--scale));
+    border: calc(10px * var(--scale)) solid #5c361a;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 calc(10px * var(--scale)) rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px; /* Reduce el espacio adicional debajo del reloj */
+}
+
+.board {
+    width: 100%;
+    height: 450px; /* Aumenta la altura de la pizarra */
+    background-color: #006400; /* Green board */
+    border: 10px solid #808080; /* Gray border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    box-sizing: border-box; /* Ensure borders are included in the element's total width and height */
 }
 
 .shelf {
@@ -30,38 +67,6 @@ body {
     border-right: 15px solid #5c361a;
     border-bottom: 15px solid #5c361a;
     position: relative;
-}
-
-.shelf::before,
-.shelf::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    width: 15px;
-    height: 15px;
-    background-color: #5c361a;
-}
-
-.shelf::before {
-    left: -15px;
-}
-
-.shelf::after {
-    right: -15px;
-}
-
-.board {
-    width: calc(50% - 30px);
-    height: 70%;
-    background-color: #006400; /* Green board */
-    border: 10px solid #808080; /* Gray border */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 2em;
-    text-align: center;
-    box-sizing: border-box; /* Ensure borders are included in the element's total width and height */
 }
 
 .row {
@@ -98,4 +103,69 @@ body {
     font-size: 3em;
     color: black;
     text-align: center;
+}
+
+:root {
+    --scale: 0.6; /* Cambia este valor para ajustar el tamaño (1 = tamaño original) */
+}
+
+.clock {
+    position: relative;
+    width: calc(200px * var(--scale));
+    height: calc(200px * var(--scale));
+    border: calc(10px * var(--scale)) solid #5c361a;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 calc(10px * var(--scale)) rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; /* Additional space below the clock */
+    margin-top: -80px; /* Additional space above the clock */
+}
+
+/* Estilos de las agujas */
+.hand {
+    position: absolute;
+    background-color: #333;
+    transform-origin: bottom center;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+}
+
+.hour {
+    width: calc(6px * var(--scale));
+    height: calc(40px * var(--scale));
+    background-color: #000;
+}
+
+.minute {
+    width: calc(4px * var(--scale));
+    height: calc(60px * var(--scale));
+    background-color: #666;
+}
+
+.second {
+    width: calc(2px * var(--scale));
+    height: calc(80px * var(--scale));
+    background-color: #f00;
+}
+
+/* Estilo para los números */
+.number {
+    position: absolute;
+    font-size: calc(1.2em * var(--scale));
+    font-weight: bold;
+    color: #333;
+    width: calc(20px * var(--scale));
+    height: calc(20px * var(--scale));
+
+    /* Distribuye cada número en círculo */
+    transform: rotate(var(--angle)) translateY(calc(-85px * var(--scale))) rotate(calc(-1 * var(--angle)));
+
+    /* Centra el texto dentro del contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
