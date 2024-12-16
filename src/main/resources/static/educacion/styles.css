@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #73b899;
+}
+
+#library {
+    width: 90%;
+    height: 70%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #73b899;
+    padding: 0 10px;
+}
+
+.shelf {
+    width: calc(23% - 30px);
+    height: 100%;
+    background-color: #a66b41;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0;
+    border-left: 15px solid #5c361a;
+    border-right: 15px solid #5c361a;
+    border-bottom: 15px solid #5c361a;
+    position: relative;
+}
+
+.shelf::before,
+.shelf::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    width: 15px;
+    height: 15px;
+    background-color: #5c361a;
+}
+
+.shelf::before {
+    left: -15px;
+}
+
+.shelf::after {
+    right: -15px;
+}
+
+.board {
+    width: calc(50% - 30px);
+    height: 70%;
+    background-color: #006400; /* Green board */
+    border: 10px solid #808080; /* Gray border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    box-sizing: border-box; /* Ensure borders are included in the element's total width and height */
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 20%;
+    border-top: 15px solid #5c361a;
+    margin: 0;
+}
+
+.book {
+    width: 20px;
+    background-color: #ff6347;
+    margin: 0;
+}
+
+.roof {
+    width: 100%;
+    height: 5%;
+    background-color: #73b899;
+}
+
+.floor {
+    width: 100%;
+    height: 25%;
+    background-color: #4f554f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floor-text {
+    font-size: 3em;
+    color: black;
+    text-align: center;
+}
