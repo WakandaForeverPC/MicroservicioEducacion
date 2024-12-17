@@ -6,13 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const firstShelf = document.createElement('div');
     firstShelf.classList.add('shelf');
     addBooksToShelf(firstShelf, colors);
+    addCardToShelf(firstShelf, 'Matemáticas', 'Álgebra, Geometría, Cálculo, Estadística, Trigonometría');
     library.insertBefore(firstShelf, library.firstChild);
 
     // Crear y agregar la segunda estantería
     const secondShelf = document.createElement('div');
     secondShelf.classList.add('shelf');
     addBooksToShelf(secondShelf, colors);
+    addCardToShelf(secondShelf, 'Ciencias', 'Física, Química, Biología, Geología, Astronomía');
     library.appendChild(secondShelf);
+
+    // Crear y agregar la tarjeta a la pizarra
+    const board = document.querySelector('.board');
+    addCardToBoard(board, 'Historia', 'Historia Antigua, Historia Medieval, Historia Moderna, Historia Contemporánea');
 
     // Inicializar el reloj
     setInterval(updateClock, 1000);
@@ -34,6 +40,28 @@ function addBooksToShelf(shelf, colors) {
 
         shelf.appendChild(row);
     }
+}
+
+function addCardToShelf(shelf, title, content) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+        <p style="font-weight: bold;">${title}</p>
+        <ul>
+            ${content.split(', ').map(item => `<li>${item}</li>`).join('')}
+        </ul>`;
+    shelf.appendChild(card);
+}
+
+function addCardToBoard(board, title, content) {
+    const card = document.createElement('div');
+    card.classList.add('board-card');
+    card.innerHTML = `
+        <p style="font-weight: bold;">${title}</p>
+        <ul>
+            ${content.split(', ').map(item => `<li>${item}</li>`).join('')}
+        </ul>`;
+    board.appendChild(card);
 }
 
 function updateClock() {
