@@ -196,10 +196,42 @@ body {
 }
 
 .board-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
     width: 35%;
-    height: 30%;
+    height: 33%;
     top: 42%;
     left: 49.5%;
+    color: black;
+}
+
+.board-card ul {
+    list-style-type: disc;
+    padding-left: 50px;
+    text-align: left;
+    margin: 0;
+    columns: 2;
+}
+
+.board-card li {
+    font-size: 0.7em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.board-card p {
+    font-size: 1.0em;
+    margin-top: -1px;
 }
 
 .card p {

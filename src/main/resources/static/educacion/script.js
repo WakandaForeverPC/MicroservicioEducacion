@@ -2,27 +2,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const library = document.getElementById('library');
     const colors = ['#ff6347', '#4682b4', '#32cd32', '#ffa500', '#6a5acd'];
 
-    // Crear y agregar la primera estantería
-    const firstShelf = document.createElement('div');
-    firstShelf.classList.add('shelf');
-    addBooksToShelf(firstShelf, colors);
-    addCardToShelf(firstShelf, 'Matemáticas', 'Álgebra, Geometría, Cálculo, Estadística, Trigonometría');
-    library.insertBefore(firstShelf, library.firstChild);
+    fetch('/educacion/aspectos')
+        .then(response => response.json())
+        .then(aspectos => {
+            const cursos = aspectos[0].descripcion.split(', ');
+            const centros = aspectos[1].descripcion.split(', ');
+            const carreras = aspectos[2].descripcion.split(', ');
 
-    // Crear y agregar la segunda estantería
-    const secondShelf = document.createElement('div');
-    secondShelf.classList.add('shelf');
-    addBooksToShelf(secondShelf, colors);
-    addCardToShelf(secondShelf, 'Ciencias', 'Física, Química, Biología, Geología, Astronomía');
-    library.appendChild(secondShelf);
+            const randomCursos = cursos.sort(() => 0.5 - Math.random()).slice(0, 5);
+            const randomCentros = centros.sort(() => 0.5 - Math.random()).slice(0, 5);
+            const randomCarreras = carreras.sort(() => 0.5 - Math.random()).slice(0, 8); // Select 8 items
 
-    // Crear y agregar la tarjeta a la pizarra
-    const board = document.querySelector('.board');
-    addCardToBoard(board, 'Historia', 'Historia Antigua, Historia Medieval, Historia Moderna, Historia Contemporánea');
+            // Crear y agregar la primera estantería
+            const firstShelf = document.createElement('div');
+            firstShelf.classList.add('shelf');
+            addBooksToShelf(firstShelf, colors);
+            addCardToShelf(firstShelf, 'Cursos Informáticos:', randomCursos.join(', '));
+            library.insertBefore(firstShelf, library.firstChild);
 
-    // Inicializar el reloj
-    setInterval(updateClock, 1000);
-    updateClock();
+            // Crear y agregar la segunda estantería
+            const secondShelf = document.createElement('div');
+            secondShelf.classList.add('shelf');
+            addBooksToShelf(secondShelf, colors);
+            addCardToShelf(secondShelf, 'Centros de Aprendizaje:', randomCentros.join(', '));
+            library.appendChild(secondShelf);
+
+            // Crear y agregar la tarjeta a la pizarra
+            const board = document.querySelector('.board');
+            addCardToBoard(board, 'Carreras y Grados:', randomCarreras.join(', '));
+
+            // Inicializar el reloj
+            setInterval(updateClock, 1000);
+            updateClock();
+        })
+        .catch(error => console.error('Error fetching aspectos:', error));
 });
 
 function addBooksToShelf(shelf, colors) {
